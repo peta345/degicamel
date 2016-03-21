@@ -17,14 +17,15 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     if(request.form['search-box']):
-        connection = MySQLdb.connect(db='camels', user='', passwd='')
+        connection = MySQLdb.connect(db='camels', user='root', passwd='password')
         cursor = connection.cursor()
         word = request.form['search-box']
         cursor.execute('select * from indexs where title like ' + '"%' + word + '%"')
         result = cursor.fetchall()
-        print result
+        print len(result)
         if len(result) == 0:
-            result = "その検索ワードにはなにもマッチしませんでした。"
+            mes = "その検索ワードにはなにもマッチしませんでした。"
+            return render_template('index.html', mes=mes)
         cursor.close()
         connection.close()
         return render_template('index.html', result=result)

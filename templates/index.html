@@ -45,25 +45,30 @@
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav> 
-	<div class="jumbotron">
-		<div class="container">
-			<!--
-			{% if title %}
-			<div>
-				<h1>{{ title }}</h1>
-				<p>{{ text }}</p>
-			</div>
+	<div class="container">
+		<div class="row">	
+			{% if mes %}
+				<h1>{{ mes  }}</h1>
 			{% endif %}
-			-->
 			{% for res in result %}
-				<div>
-					<h1>{{ res[1]  }}</h1>
-					<p>{{ res[2]  }}</p>
+			<div class="col-md-4">	
+				<div class="panel panel-success">
+					<div id="{{ res[0] }}" class="panel-heading">{{ res[1] }}</div>
+					<div class="panel-body">{{ res[2] }}</div>
 				</div>
+			</div>
 			{% endfor %}
-		</div>
-	</div>
+		</div><!-- end container -->
+	</div> <!-- end content -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="./static/js/bootstrap.js"></script>
+	<script>
++$(function(){
+	$('div.panel-heading').on('click', ()=>{
+		var fuga = $('div.panel-heading').index(this);
+		console.log(fuga);
+	})
+})
+	</script>
 </body>
 </html>
