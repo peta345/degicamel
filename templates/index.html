@@ -53,7 +53,7 @@
 			{% for res in result %}
 			<div class="col-md-4">	
 				<div class="panel panel-success">
-					<div id="{{ res[0] }}" class="panel-heading">{{ res[1] }}</div>
+					<div id="{{ res[0] }}" class="panel-heading" data-popover="true" data-html=true >{{ res[1] }}</div>
 					<div class="panel-body">{{ res[2] }}</div>
 				</div>
 			</div>
@@ -62,13 +62,6 @@
 	</div> <!-- end content -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="./static/js/bootstrap.js"></script>
-	<script>
-+$(function(){
-	$('div.panel-heading').on('click', ()=>{
-		var fuga = $('div.panel-heading').index(this);
-		console.log(fuga);
-	})
-})
-	</script>
+	<script src="./static/js/index.js"></script>
 </body>
 </html>

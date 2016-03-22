@@ -1,28 +1,31 @@
 +$(function() {
 	'use strict';
 
-	var pop_flg = false;
-	var hidePop = () =>{
-		$('#hoge').popover('hide');
-	};
-	$('#hoge').popover({	
-		trigger : 'click',
-		html: true,
-		animation:true,
-	}).on('click', (e)=>{
-		$('#hoge + div').css('text-align', 'center');
-		$('.popover-content button').css('margin-bottom', '20px');
-		pop_flg = true;
-	});
+var originalLeave = $.fn.popover.Constructor.prototype.leave;
+$.fn.popover.Constructor.prototype.leave = function(obj){
+  var self = obj instanceof this.constructor ?
+    obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+  var container, timeout;
 
-	$('#login,#content').on('click', ()=>{
-		if(pop_flg){
-			$('#hoge').popover('hide').trigger('click');
-			pop_flg = false;
-		};
-	});
-	$(document).on('click', '#fuga', ()=> {
-		$('#hoge').popover('hide').trigger('click');
-		pop_flg = false;
-	});
+  originalLeave.call(this, obj);
+  if(obj.currentTarget) {
+    container = $(obj.currentTarget).siblings('.popover')
+    timeout = self.timeout;
+    container.one('mouseenter', function(){
+      //We entered the actual popover – call off the dogs
+      clearTimeout(timeout);
+      //Let's monitor popover content instead
+      container.one('mouseleave', function(){
+        $.fn.popover.Constructor.prototype.leave.call(self, self);
+      });
+    })
+  }
+};
+
+	$('.panel-heading').hover(function(){
+		let id = this.id;
+		$(this).attr('data-content', '<a href='+id+'.pdf>PDF</a>');
+	})
+
+	$('body').popover({ selector: '[data-popover]', trigger: 'click hover', placement: 'auto', delay: {show: 50, hide: 400}});
 });
