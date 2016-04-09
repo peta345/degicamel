@@ -14,6 +14,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/top', methods=['GET', 'POST'])
+def top():
+	return render_template('top.html')
+
 @app.route('/submit', methods=['POST'])
 def submit():
     if(request.form['search-box']):

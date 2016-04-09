@@ -24,7 +24,7 @@ $.fn.popover.Constructor.prototype.leave = function(obj){
 
 	$('.panel-heading').hover(function(){
 		let id = this.id;
-		$(this).attr('data-content', '<a href='+id+'.pdf>PDF</a>');
+		$(this).attr('data-content', '<a href='+id+'.pdf>PDF</a> or <a href='+id+'.pdf>HTML</a>を閲覧する');
 	})
 
 	$('body').popover({ selector: '[data-popover]', trigger: 'click hover', placement: 'auto', delay: {show: 50, hide: 400}});
