@@ -1,0 +1,18 @@
+$panel-height : 130px;
+
+body {
+	.panel-body {
+		height: $panel-height;
+	}
+	.panel-footer {
+		background-color: #fff;
+		height: 40px;
+		span {
+			font-size: 13px;
+			color : grey;
+		}
+		span:hover {
+			color : black;
+		}
+	}
+}

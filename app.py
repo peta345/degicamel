@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import MySQLdb
 from MySQLdb.cursors import DictCursor
+#Pythonの辞書の順番をよしなにしてくれるやつ
 from collections import OrderedDict
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, json,jsonify
 import sys
 import codecs
 
@@ -33,11 +34,21 @@ def submit():
         cursor.close()
         connection.close()
         return render_template('index.html', result=result)
-        #return render_template('index.html', title=result[0][1], text=result[0][2])
     else:
         word = ""
         return render_template('index.html')
 
+@app.route('/iine', methods=['POST'])
+def iine():
+	pack = request.json
+	print pack
+	print pack['num']
+	return_data = pack
+	return jsonify(ResultSet=json.dumps(return_data))	
+
+def connect_sql():
+        connection = MySQLdb.connect(db='camels', user='root', passwd='password')
+        cursor = connection.cursor()
 
 
 if __name__ == '__main__':

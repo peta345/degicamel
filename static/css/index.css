@@ -1,3 +1,12 @@
-.hoge {
-	background-color : red;
-}
+body .panel-body {
+  height: 130px; }
+body .panel-footer {
+  background-color: #fff;
+  height: 40px; }
+  body .panel-footer span {
+    font-size: 13px;
+    color: grey; }
+  body .panel-footer span:hover {
+    color: black; }
+
+/*# sourceMappingURL=index.css.map */
