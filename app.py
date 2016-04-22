@@ -22,18 +22,14 @@ def top():
 @app.route('/submit', methods=['POST'])
 def submit():
     if(request.form['search-box']):
-        connection = MySQLdb.connect(db='camels', user='root', passwd='password')
-        cursor = connection.cursor()
-        word = request.form['search-box']
-        cursor.execute('select * from indexs where title like ' + '"%' + word + '%"')
-        result = cursor.fetchall()
-        print len(result)
-        if len(result) == 0:
-            mes = "その検索ワードにはなにもマッチしませんでした。"
-            return render_template('index.html', mes=mes)
-        cursor.close()
-        connection.close()
-        return render_template('index.html', result=result)
+		word = request.form['search-box']
+		word = 'select * from indexs where title like ' + '"%' + word + '%"'
+		result = _execute(word)
+		print len(result)
+		if len(result) == 0:
+			mes = "その検索ワードにはなにもマッチしませんでした。"
+			return render_template('index.html', mes=mes)
+		return render_template('index.html', result=result)
     else:
         word = ""
         return render_template('index.html')
@@ -42,13 +38,32 @@ def submit():
 def iine():
 	pack = request.json
 	print pack
-	print pack['num']
+	print pack['id']
+	colid = pack['id']
+	_addfav(colid)
 	return_data = pack
 	return jsonify(ResultSet=json.dumps(return_data))	
 
-def connect_sql():
-        connection = MySQLdb.connect(db='camels', user='root', passwd='password')
-        cursor = connection.cursor()
+def _execute(word):
+	connection = MySQLdb.connect(db='camels', user='root', passwd='password')
+	cursor = connection.cursor()
+	cursor.execute(word)
+	result = cursor.fetchall()
+	cursor.close()
+	connection.close()
+	return result
+
+def _addfav(colid):
+	connection = MySQLdb.connect(db='camels', user='root', passwd='password')
+	cursor = connection.cursor()
+	colid = colid.encode('utf-8')
+	word = 'update indexs set fav = fav + 1 where id = ' + colid + ';'
+	cursor.execute(word)
+	connection.commit()
+	cursor.close()
+	connection.close()
+
+	
 
 
 if __name__ == '__main__':
