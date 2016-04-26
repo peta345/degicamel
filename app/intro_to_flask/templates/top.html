@@ -1,13 +1,12 @@
+{% extends "master.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<link rel="stylesheet" href="./static/css/bootstrap.css">
-	<link rel="stylesheet" href="./static/css/top.css">
-</head>
-<body>
+{% block title %}でじらくだ-top-{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/top.css') }}">
+{% endblock %}
+
+{% block body %}
 	<header>
 	</header>
 		<form action="{{ url_for('submit') }}" method="POST" class="text-center">
@@ -32,5 +31,4 @@
 				</div>
 			</div>
 		</div>
-</body>
-</html>
+{% endblock %}
