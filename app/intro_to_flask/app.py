@@ -6,6 +6,9 @@ from collections import OrderedDict
 from flask import Flask, render_template, request, redirect, url_for, json,jsonify
 import sys
 import codecs
+import sys
+
+sys.dont_wirte_bytecode = True
 
 
 app = Flask(__name__)
@@ -23,7 +26,7 @@ def top():
 def submit():
     if(request.form['search-box']):
 		word = request.form['search-box']
-		word = 'select * from indexs where title like ' + '"%' + word + '%"'
+		word = 'select * from article where title like ' + '"%' + word + '%"'
 		result = _execute(word)
 		print len(result)
 		if len(result) == 0:
@@ -33,6 +36,12 @@ def submit():
     else:
         word = ""
         return render_template('index.html')
+
+@app.route('/signUp', methods=['POST'])
+def signUp():
+    _name = request.form['inputName']
+    _email = request.form['inputEmail']
+    _password = request.form['inputPassword']
 
 @app.route('/iine', methods=['POST'])
 def iine():
@@ -57,7 +66,7 @@ def _addfav(colid):
 	connection = MySQLdb.connect(db='camels', user='root', passwd='password')
 	cursor = connection.cursor()
 	colid = colid.encode('utf-8')
-	word = 'update indexs set fav = fav + 1 where id = ' + colid + ';'
+	word = 'update article set fav = fav + 1 where id = ' + colid + ';'
 	cursor.execute(word)
 	connection.commit()
 	cursor.close()

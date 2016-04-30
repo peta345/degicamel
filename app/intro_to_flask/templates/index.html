@@ -28,9 +28,14 @@
 				<span class="input-group-addon" id="basic-addon2"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
 			</div>
 		  </form>
-		  <ul class="nav navbar-nav navbar-right">
-			  <li><a href="#" id="hoge" class="fontop"  data-toggle="popover"  data-content="<button type='button'id='fuga' class='btn btn-secondary btn-sm btn-success text-center' data-toggle='modal' data-target='#form-modal' >ログイン</button>もしくは <a id='entry' href='#'>新規登録</a>" data-placement="bottom">ログイン</a></li>
-			  <!-- <li><a href="#" class="fontop">Link</a></li> -->
+		  <ul class="nav navbar-nav navbar-right"> 
+			<li class="dropdown">
+			  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ログイン <span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+				<li><a href="#" data-toggle="modal" data-target="#myModal">ログイン</a></li>
+				<li><a href="#">新規登録</a></li>	
+			  </ul>
+			</li>
 			<li class="dropdown">
 			  <a href="#" id="login" class="dropdown-toggle fontop" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">表示順<span class="caret"></span></a>
 			  <ul class="dropdown-menu">
@@ -56,7 +61,6 @@
 					<div id="{{ res[0] }}" class="panel-heading" data-popover="true" data-html=true >{{ res[1] }}</div>
 					<div class="panel-body">{{ res[2] }}</div>
 					<div class="panel-footer">
-						
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true">{{ res[3] }}</span>
 						<span class="glyphicon glyphicon-share-alt pull-right" aria-hidden="true">Share</span>
 					</div>
@@ -66,4 +70,42 @@
 		</div><!-- end container -->
 	</div> <!-- end content -->
 
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">ログイン</h4>
+		  </div>
+		  <div class="modal-body">	
+			<form>
+			 <div class="form-group">
+				<label for="username">Name</label>
+				<input type="text" class="form-control" id="name" placeholder="Name">
+			  </div>
+			  <div class="form-group">
+				<label for="mail">Email address</label>
+				<input type="email" class="form-control" id="mail" placeholder="Email">
+			  </div>
+			  <div class="form-group">
+				<label for="passwd">Password</label>
+				<input type="password" class="form-control" id="passwd" placeholder="Password">
+			  </div>
+			  <div class="checkbox">
+				<label>
+				  <input type="checkbox"> Check me out
+				</label>
+			  </div>
+			  <button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
 {% endblock %}
+
