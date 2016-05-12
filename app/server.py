@@ -1,3 +1,3 @@
-from intro_to_flask.app import app
+from intro_to_flask.manage import app
 
-app.run(debug=True)
+app.run(debug=True, port=8000)

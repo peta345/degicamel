@@ -56,4 +56,12 @@
 			}
 		});
 	}
+
+	$('.submit').on('click', function(){
+		$,ajax({
+		    type : 'post',
+		    url : '/signUp',
+
+			})
+	})
 });
