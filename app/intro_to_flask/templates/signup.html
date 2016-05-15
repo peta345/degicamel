@@ -1,0 +1,42 @@
+{% extends "master.html" %}
+
+{% block title %}新規登録{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="jumbotron text-center">
+    <div class="container">
+	<h2 class="text-left">新規登録ページ</h2>
+    </div>
+</div>
+
+<div id="info"></div>
+
+<form>
+    <div class="container">
+	<div class="form-group">
+	    <label for="name">ユーザ名</label>
+	    <input type="text" class="form-control" name="name" id="name" >
+	</div>
+      <div class="form-group">
+	<label for="mail">メールアドレス</label>
+	<input type="email" class="form-control" name="mail" id="mail" >
+      </div>
+      <div class="form-group">
+	<label for="pass">パスワード</label>
+	<input type="password" class="form-control" name="pass" id="pass" >
+      </div>
+	<div class="form-group">
+	    <label for="pass_check">パスワード確認</label>
+	    <input type="password" class="form-control" name="pass_check" id="pass_check">
+	  </div>
+      <button type="submit" class="btn btn-info pull-right">登録</button>
+    </div>
+</form>
+{% endblock %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+{% endblock %}

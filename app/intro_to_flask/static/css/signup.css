@@ -1,0 +1,10 @@
+.jumbotron {
+    background-color:#2d9ccf;
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.container {
+    padding-right:50px;
+    padding-left:50px;
+}

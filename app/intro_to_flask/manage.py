@@ -41,12 +41,17 @@ def submit():
         word = ""
         return render_template('index.html')
 
-@app.route('/signUp', methods=['POST'])
+@app.route('/signUp', methods=['GET','POST'])
 def signUp():
-    _name = request.form['inputName']
-    _email = request.form['inputEmail']
-    _password = request.form['inputPassword']
+    return render_template('signup.html')
+
+@app.route('/signIn', methods=['POST'])
+def signIp():
+    _name = request.form['name']
+    _email = request.form['mail']
+    _password = request.form['passwd']
     print "Pass"
+    print _name
     if _name and _email and _password:
 	return json.dumps({'html': '<span>login success !!</span>'})
     else:

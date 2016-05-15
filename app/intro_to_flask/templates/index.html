@@ -82,15 +82,15 @@
 		      <form>
 			 <div class="form-group">
 				<label for="username">Name</label>
-				<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+				<input type="text" class="form-control" name="name" placeholder="Name">
 			  </div>
 			  <div class="form-group">
 				<label for="mail">Email address</label>
-				<input type="email" class="form-control" name="mail" id="mail" placeholder="Email">
+				<input type="email" class="form-control" name="mail" placeholder="Email">
 			  </div>
 			  <div class="form-group">
 				<label for="passwd">Password</label>
-				<input type="password" class="form-control" name="passwd" id="passwd" placeholder="Password">
+				<input type="password" class="form-control" name="passwd" placeholder="Password">
 			  </div>
 			  <div class="checkbox">
 				<label>
@@ -109,24 +109,6 @@
 	</div>
 {% endblock %}
 {% block js %}
-<script>
-    
-$(function() {
-    console.log("open")
-    $('#login').on("click", function() { 
-	console.log("pas")
-        $.ajax({
-            url: '/signUp',
-            data: $('form').serialize(),
-            type: 'POST',
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    });
-});
-</script>
+<script src="{{ url_for('static', filename="js/index.js") }}"></script>
 {% endblock %}
+

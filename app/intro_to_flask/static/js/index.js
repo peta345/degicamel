@@ -57,11 +57,21 @@
 		});
 	}
 
-	$('.submit').on('click', function(){
-		$,ajax({
-		    type : 'post',
-		    url : '/signUp',
-
-			})
-	})
+    $('form').on("submit", function(e) {
+	e.preventDefault();
+	console.log($('form').serialize());
+        $.ajax({
+            type: 'POST',
+            url: '/signIn',
+            //data: JSON.stringify($('form').serialize(), null, '\t'),
+	    //contentType: 'application/json;charaset=UTF-8',
+	    data: $('form').serialize(),
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 });
