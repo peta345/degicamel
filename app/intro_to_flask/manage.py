@@ -45,17 +45,17 @@ def submit():
 def signUp():
     return render_template('signup.html')
 
-@app.route('/signIn', methods=['POST'])
-def signIp():
-    _name = request.form['name']
-    _email = request.form['mail']
-    _password = request.form['passwd']
-    print "Pass"
-    print _name
-    if _name and _email and _password:
-	return json.dumps({'html': '<span>login success !!</span>'})
+@app.route('/regist', methods=['POST'])
+def regist():
+    info = []
+    info.append(request.form['name'])
+    info.append(request.form['mail'])
+    info.append(request.form['pass'])
+    print info
+    if info:
+        return render_template('confirm.html', uinfo=info)
     else:
-	return json.dumps({'html': '<span>login failed</span>'})
+        return json.dumps({'html': '<span>login failed</span>'})
 
 @app.route('/iine', methods=['POST'])
 def iine():
